@@ -1,0 +1,28 @@
+{
+  "name": "RefugeeStories",
+  "version": "1.0.0",
+  "description": "Refugee Stories Back End",
+  "main": "index.js",
+  "repository": "git@github.com:refugee-stories/brandon-gardner-backend.git",
+  "author": "Brandon G-Home <brandon.gardner2@outlook.com>",
+  "license": "MIT",
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "cors": "^2.8.5",
+    "dotenv": "^7.0.0",
+    "express": "^4.16.4",
+    "helmet": "^3.16.0",
+    "jsonwebtoken": "^8.5.1",
+    "knex": "^0.16.5",
+    "knex-cleaner": "^1.1.4",
+    "pg": "^7.9.0",
+    "sqlite3": "^4.0.6"
+  },
+  "devDependencies": {
+    "nodemon": "^1.18.11"
+  },
+  "scripts": {
+    "start": "node index.js",
+    "server": "nodemon index.js"
+  }
+}
