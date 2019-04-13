@@ -18,14 +18,19 @@ router
   });
 
 router
-  .route("/stories/approve")
+  .route("/stories/approve/:id")
   //POST FOR APPROVE
-  .post(async ({ body: { title, story, highlight } }, res) => {
+  .post(async ({ body: { title, story, highlight }, params: { id } }, res) => {
     if (title && story && highlight) {
       try {
-        const id = await actions.approveStory({ title, story, highlight });
-        res.status(200).json({ newStoryID: id });
+        const newId = await actions.approveStory(id, {
+          title,
+          story,
+          highlight
+        });
+        res.status(200).json({ newStoryID: newId });
       } catch (error) {
+        console.log(error);
         res.status(500).json({
           message: "Something went wrong approving the story.",
           error
@@ -39,13 +44,17 @@ router
   });
 
 router
-  .route("/stories/reject")
+  .route("/stories/reject/:id")
   //DELETE FOR REJECT
-  .delete(async ({ body: { id } }, res) => {
+  .delete(async ({ params: { id } }, res) => {
     if (id) {
       try {
-        await actions.rejectStory(id);
-        res.status(200).end();
+        const count = await actions.rejectStory(id);
+        if (count) {
+          res.status(200).end();
+        } else {
+          res.status(404).json({ message: "Story could not be located." });
+        }
       } catch (error) {
         res.status(500).json({
           message: "Something went wrong rejecting the story.",
@@ -60,13 +69,17 @@ router
   });
 
 router
-  .route("/stories/delete")
+  .route("/stories/delete/:id")
   //DELETE FOR REMOVAL
-  .delete(async ({ body: { id } }, res) => {
+  .delete(async ({ params: { id } }, res) => {
     if (id) {
       try {
-        await actions.deleteStory(id);
-        res.status(200).end();
+        const count = await actions.deleteStory(id);
+        if (count) {
+          res.status(200).end();
+        } else {
+          res.status(404).json({ message: "Story could not be located." });
+        }
       } catch (error) {
         res.status(500).json({
           message: "Something went wrong deleting the story.",

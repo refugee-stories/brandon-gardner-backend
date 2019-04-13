@@ -42,11 +42,10 @@ router
       const stories = await actions.getLatestStories();
       res.status(200).json(stories);
     } catch (error) {
-      res
-        .status(500)
-        .json({
-          message: "Something went wrong retrieving the latest stories."
-        });
+      res.status(500).json({
+        message: "Something went wrong retrieving the latest stories.",
+        error
+      });
     }
   });
 

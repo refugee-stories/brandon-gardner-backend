@@ -7,15 +7,15 @@ module.exports = {
   rejectStory
 };
 
-function approveStory(story) {
+function approveStory(id, story) {
   return new Promise(async (resolve, reject) => {
     try {
-      const [id] = await db("stories").insert("story");
+      const [newId] = await db("stories").insert(story);
       const count = await db("pending_stories")
-        .where({ id: story.id })
+        .where({ id })
         .del();
       if (count) {
-        resolve(id);
+        resolve(newId);
       } else {
         reject(
           Error("Something went wrong deleting the story from pending_stories.")

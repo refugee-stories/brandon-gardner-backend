@@ -1,7 +1,7 @@
 const router = require("express").Router();
 const bcrypt = require("bcryptjs");
 
-const actions = require("./login");
+const actions = require("./loginModel");
 const generateToken = require("../../auth/token-handlers").generateToken;
 
 router.route("/").post(async (req, res) => {

@@ -16,8 +16,8 @@ server.use(middleware);
 
 //Routes Middleware
 server.use("/api/auth/login", loginRouter);
-server.use("api/stories", storyRouter);
-server.use("api/admin", restricted("admin"), adminRouter);
+server.use("/api/stories", storyRouter);
+server.use("/api/admin", restricted("admin"), adminRouter);
 
 server.get("/", (req, res) => {
   res.sendFile(path.join(__dirname + "/index.html"));
