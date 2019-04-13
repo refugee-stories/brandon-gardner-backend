@@ -2,6 +2,7 @@ const db = require("../../data/config");
 
 module.exports = {
   approveStory,
+  deleteStory,
   getPendingStories,
   rejectStory
 };
@@ -24,6 +25,12 @@ function approveStory(story) {
       reject(error);
     }
   });
+}
+
+function deleteStory(id) {
+  return db("stories")
+    .where({ id })
+    .del();
 }
 
 function getPendingStories() {
