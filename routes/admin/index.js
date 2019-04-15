@@ -28,7 +28,7 @@ router
           story,
           highlight
         });
-        res.status(200).json({ newStoryID: newId });
+        res.status(201).json({ newStoryID: newId });
       } catch (error) {
         console.log(error);
         res.status(500).json({

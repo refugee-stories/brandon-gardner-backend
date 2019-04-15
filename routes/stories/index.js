@@ -20,7 +20,7 @@ router
     if (story && title) {
       try {
         const [id] = await actions.addStory({ story, title });
-        res.status(200).json({ id });
+        res.status(201).json({ id });
       } catch (error) {
         res.status(500).json({
           message: "Something went wrong submitting the story.",
