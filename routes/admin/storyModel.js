@@ -10,6 +10,12 @@ module.exports = {
 function approveStory(id, story) {
   return new Promise(async (resolve, reject) => {
     try {
+      const exists = await db("pending_stories")
+        .where({ id })
+        .first();
+      if (!exists) {
+        resolve(false);
+      }
       const [newId] = await db("stories").insert(story);
       const count = await db("pending_stories")
         .where({ id })

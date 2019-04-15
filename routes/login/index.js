@@ -20,9 +20,7 @@ router.route("/").post(async (req, res) => {
       res.status(500).json({ message: "Something went wrong logging in." });
     }
   } else {
-    res
-      .status(400)
-      .json({ message: "Please provide the username and password." });
+    res.status(400).json({ message: "Please provide an email and password." });
   }
 });
 
