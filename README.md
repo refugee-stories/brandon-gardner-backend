@@ -1,20 +1,16 @@
 # Refugee Stories
 
----
-
 ## Table Of Contents
-
----
 
 #### Public Endpoints
 
+[Login](#login)<br>
 [Fetch All Stories](#fetch-all)<br>
 [Fetch Latest Stories](#fetch-latest)<br>
 [Submit Story](#submit-story)<br>
 
 #### Admin Endpoints
 
-[Login](#login)<br>
 [Fetch Pending Stories](#fetch-pending)<br>
 [Approve Story](#approve-story)<br>
 [Reject Story](#reject-story)<br>
@@ -22,7 +18,7 @@
 
 ---
 
-##Base API URL
+## Base API URL
 
 **https://refugeestories-be.herokuapp.com/**
 
@@ -32,7 +28,7 @@
 
 _GET Request /api/stories_
 
-###Response
+### Response
 
 **200 Ok**
 
@@ -65,7 +61,7 @@ _GET Request /api/stories_
 
 _GET Request /api/stories/latest_
 
-###Response
+### Response
 
 **200 Ok**
 
@@ -105,7 +101,7 @@ _POST Request /api/stories_
 | Title | String | Yes      | User's title |
 | Story | String | Yes      | User's story |
 
-###Response
+### Response
 
 **201 Created**
 
