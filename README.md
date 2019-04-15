@@ -24,6 +24,40 @@
 
 ---
 
+## Login <a name="login"></a>
+
+_POST Request /api/auth/login_
+
+### Body
+
+| name     | type   | required | description     |
+| -------- | ------ | -------- | --------------- |
+| Email    | String | Yes      | User's email    |
+| Password | String | Yes      | User's password |
+
+### Response
+
+**200 Ok**
+
+> The server will respond with a welcome message and JWT to access restricted routes.
+
+```
+{
+    "message": "Welcome!",
+    "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWJqZWN0IjoxLCJyb2xlIjoiYWRtaW4iLCJpYXQiOjE1NTUxOTExNTIsImV4cCI6MTU1NTI3NzU1Mn0.ZwIH2g1ACpZcH8ast9qdRcutjKkN"
+}
+```
+
+**400 Bad Request**
+
+> If you fail to submit an email or password, you will receive a message instructing you to add these.
+
+```
+{
+    "message": "Please provide an email and password."
+}
+```
+
 ## Fetch All Stories <a name="fetch-all"></a>
 
 _GET Request /api/stories_
@@ -90,7 +124,7 @@ _GET Request /api/stories/latest_
 ]
 ```
 
-## Fetch All Stories <a name="fetch-all"></a>
+## Submit A Story <a name="submit-story"></a>
 
 _POST Request /api/stories_
 
@@ -115,7 +149,7 @@ _POST Request /api/stories_
 
 **400 Bad Request**
 
-> If you fail to submit a title or story, you will receive a message instructing you t oadd tehse.
+> If you fail to submit a title or story, you will receive a message instructing you to add these.
 
 ```
 {
