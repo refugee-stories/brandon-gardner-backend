@@ -25,6 +25,7 @@
   },
   "scripts": {
     "start": "node index.js",
-    "server": "nodemon index.js"
+    "server": "nodemon index.js",
+    "test": "jest --watch --verbose"
   }
 }
