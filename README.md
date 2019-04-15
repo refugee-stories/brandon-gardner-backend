@@ -24,7 +24,9 @@
 
 ---
 
-## Login <a name="login"></a>
+<a name="login"></a>
+
+## Login
 
 _POST Request /api/auth/login_
 
@@ -60,7 +62,9 @@ _POST Request /api/auth/login_
 
 ---
 
-## Fetch All Stories <a name="fetch-all"></a>
+<a name="fetch-all"></a>
+
+## Fetch All Stories
 
 _GET Request /api/stories_
 
@@ -95,7 +99,9 @@ _GET Request /api/stories_
 
 ---
 
-## Fetch Latest Stories <a name="fetch-latest"></a>
+<a name="fetch-latest"></a>
+
+## Fetch Latest Stories
 
 _GET Request /api/stories/latest_
 
@@ -130,7 +136,9 @@ _GET Request /api/stories/latest_
 
 ---
 
-## Submit A Story <a name="submit-story"></a>
+<a name="submit-story"></a>
+
+## Submit A Story
 
 _POST Request /api/stories_
 
@@ -175,7 +183,9 @@ _POST Request /api/stories_
 
 ---
 
-## Fetch Pending Stories <a name="fetch-pending"></a>
+<a name="fetch-pending"></a>
+
+## Fetch Pending Stories
 
 _GET Request /api/admin/stories_
 
@@ -213,7 +223,9 @@ _GET Request /api/admin/stories_
 
 ---
 
-## Approve A Story <a name="approve-story"></a>
+<a name="approve-story"></a>
+
+## Approve A Story
 
 _POST Request /api/admin/stories/approve/:id_
 
@@ -255,7 +267,9 @@ _POST Request /api/admin/stories/approve/:id_
 
 ---
 
-## Reject A Story <a name="reject-story"></a>
+<a name="reject-story"></a>
+
+## Reject A Story
 
 _POST Request /api/admin/stories/reject/:id_
 
@@ -283,7 +297,9 @@ _POST Request /api/admin/stories/reject/:id_
 
 ---
 
-## Delete A Story <a name="delete-story"></a>
+<a name="delete-story"></a>
+
+## Delete A Story
 
 _Deletes an already approved story. Does not operate on pending stories. Please use reject if you need to remove a pending story._
 
