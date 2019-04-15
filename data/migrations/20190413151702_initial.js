@@ -1,9 +1,5 @@
 exports.up = function(knex, Promise) {
   return knex.schema
-    .createTable("roles", t => {
-      t.increments();
-      t.string("role");
-    })
     .createTable("accounts", t => {
       t.increments();
       t.integer("role_id")
@@ -17,6 +13,10 @@ exports.up = function(knex, Promise) {
         .notNullable()
         .unique();
       t.string("password").notNullable();
+    })
+    .createTable("roles", t => {
+      t.increments();
+      t.string("role");
     })
     .createTable("pending_stories", t => {
       t.increments();

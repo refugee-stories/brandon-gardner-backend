@@ -1,7 +1,18 @@
 const request = require("supertest");
 const server = require("../../../api/server");
+const db = require("../../../data/config");
 
 describe("Login Model Tests", () => {
+  beforeAll(async () => {
+    //Seed the database with test information.
+    return new Promise(async resolve => {
+      setTimeout(async () => {
+        await db.seed.run();
+        resolve();
+      }, 2000);
+    });
+  });
+
   it("Should throw a 400 if no email/password provided", async () => {
     const res = await request(server).post("/api/auth/login");
     expect(res.status).toBe(400);
