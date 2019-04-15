@@ -28,7 +28,11 @@ router
           story,
           highlight
         });
-        res.status(201).json({ newStoryID: newId });
+        if (newId) {
+          res.status(201).json({ newStoryID: newId });
+        } else {
+          res.status(404).json({ message: "The story could not be found." });
+        }
       } catch (error) {
         console.log(error);
         res.status(500).json({
@@ -47,24 +51,18 @@ router
   .route("/stories/reject/:id")
   //DELETE FOR REJECT
   .delete(async ({ params: { id } }, res) => {
-    if (id) {
-      try {
-        const count = await actions.rejectStory(id);
-        if (count) {
-          res.status(200).end();
-        } else {
-          res.status(404).json({ message: "Story could not be located." });
-        }
-      } catch (error) {
-        res.status(500).json({
-          message: "Something went wrong rejecting the story.",
-          error
-        });
+    try {
+      const count = await actions.rejectStory(id);
+      if (count) {
+        res.status(200).end();
+      } else {
+        res.status(404).json({ message: "Story could not be located." });
       }
-    } else {
-      res
-        .status(400)
-        .json({ message: "Please provide an ID of the story to be rejected." });
+    } catch (error) {
+      res.status(500).json({
+        message: "Something went wrong rejecting the story.",
+        error
+      });
     }
   });
 
@@ -72,24 +70,18 @@ router
   .route("/stories/delete/:id")
   //DELETE FOR REMOVAL
   .delete(async ({ params: { id } }, res) => {
-    if (id) {
-      try {
-        const count = await actions.deleteStory(id);
-        if (count) {
-          res.status(200).end();
-        } else {
-          res.status(404).json({ message: "Story could not be located." });
-        }
-      } catch (error) {
-        res.status(500).json({
-          message: "Something went wrong deleting the story.",
-          error
-        });
+    try {
+      const count = await actions.deleteStory(id);
+      if (count) {
+        res.status(200).end();
+      } else {
+        res.status(404).json({ message: "Story could not be located." });
       }
-    } else {
-      res
-        .status(400)
-        .json({ message: "Please provide an ID of the story to be deleted." });
+    } catch (error) {
+      res.status(500).json({
+        message: "Something went wrong deleting the story.",
+        error
+      });
     }
   });
 

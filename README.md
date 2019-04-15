@@ -271,7 +271,7 @@ _POST Request /api/admin/stories/approve/:id_
 
 ## Reject A Story
 
-_POST Request /api/admin/stories/reject/:id_
+_DELETE Request /api/admin/stories/reject/:id_
 
 ### Headers
 
@@ -303,7 +303,7 @@ _POST Request /api/admin/stories/reject/:id_
 
 _Deletes an already approved story. Does not operate on pending stories. Please use reject if you need to remove a pending story._
 
-_POST Request /api/admin/stories/delete/:id_
+_DELETE Request /api/admin/stories/delete/:id_
 
 ### Headers
 
