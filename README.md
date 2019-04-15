@@ -30,7 +30,7 @@ _POST Request /api/auth/login_
 
 ### Body
 
-| name     | type   | required | description     |
+| Name     | Type   | Required | Description     |
 | -------- | ------ | -------- | --------------- |
 | Email    | String | Yes      | User's email    |
 | Password | String | Yes      | User's password |
@@ -130,7 +130,7 @@ _POST Request /api/stories_
 
 ### Body
 
-| name  | type   | required | description  |
+| Name  | Type   | Required | Description  |
 | ----- | ------ | -------- | ------------ |
 | Title | String | Yes      | User's title |
 | Story | String | Yes      | User's story |
@@ -144,6 +144,16 @@ _POST Request /api/stories_
 ```
 {
     "id": 1
+}
+```
+
+**401 Unauthorized**
+
+> The server will respond with a message telling you the credentials are incorrect.
+
+```
+{
+    "message": "Invalid credentials."
 }
 ```
 
