@@ -58,6 +58,8 @@ _POST Request /api/auth/login_
 }
 ```
 
+---
+
 ## Fetch All Stories <a name="fetch-all"></a>
 
 _GET Request /api/stories_
@@ -91,6 +93,8 @@ _GET Request /api/stories_
 ]
 ```
 
+---
+
 ## Fetch Latest Stories <a name="fetch-latest"></a>
 
 _GET Request /api/stories/latest_
@@ -123,6 +127,8 @@ _GET Request /api/stories/latest_
     }
 ]
 ```
+
+---
 
 ## Submit A Story <a name="submit-story"></a>
 
@@ -164,5 +170,143 @@ _POST Request /api/stories_
 ```
 {
     "message": "Please provide a title and story to submit."
+}
+```
+
+---
+
+## Fetch Pending Stories <a name="fetch-pending"></a>
+
+_GET Request /api/admin/stories_
+
+### Headers
+
+| Name          | Required | Description |
+| ------------- | -------- | ----------- |
+| Authorization | Yes      | User's JWT  |
+
+### Response
+
+**200 Ok**
+
+> The server will respond with an array of all pending stories.
+
+```
+[
+    {
+        "id": 4,
+        "title": "My second story",
+        "story": "Some more stuff went down"
+    },
+    {
+        "id": 3,
+        "title": "My second story",
+        "story": "Some more stuff went down"
+    },
+    {
+        "id": 2,
+        "title": "My third story",
+        "story": "Wow hey there"
+    }
+]
+```
+
+---
+
+## Approve A Story <a name="approve-story"></a>
+
+_POST Request /api/admin/stories/approve/:id_
+
+### Headers
+
+| Name          | Required | Description |
+| ------------- | -------- | ----------- |
+| Authorization | Yes      | User's JWT  |
+
+### Body
+
+| Name      | Type   | Required | Description     |
+| --------- | ------ | -------- | --------------- |
+| Title     | String | Yes      | Story title     |
+| Story     | String | Yes      | Story body      |
+| Highlight | String | Yes      | Story highlight |
+
+### Response
+
+**201 Created**
+
+> The server will respond with the new ID for the approved story.
+
+```
+{
+    "newStoryID": 4
+}
+```
+
+**400 Bad Request**
+
+> If you fail to submit a title, story and highlight, you will receive a message instructing you to add these.
+
+```
+{
+    "message": "Please provide a title, story, and highlight to add."
+}
+```
+
+---
+
+## Reject A Story <a name="reject-story"></a>
+
+_POST Request /api/admin/stories/reject/:id_
+
+### Headers
+
+| Name          | Required | Description |
+| ------------- | -------- | ----------- |
+| Authorization | Yes      | User's JWT  |
+
+### Response
+
+**200 Ok**
+
+> The server will respond with a 200 and no body if the story was successfully rejected.
+
+**404 Not Found**
+
+> If the ID cannot be located, the server will provide a message and 404 not found error.
+
+```
+{
+    "message": "Story could not be located."
+}
+```
+
+---
+
+## Delete A Story <a name="delete-story"></a>
+
+/Deletes an already approved story. Does not operate on pending stories. Please use reject/
+
+_POST Request /api/admin/stories/delete/:id_
+
+### Headers
+
+| Name          | Required | Description |
+| ------------- | -------- | ----------- |
+| Authorization | Yes      | User's JWT  |
+
+### Response
+
+**200 Ok**
+
+> The server will respond with a 200 and no body if the story was successfully deleted.
+
+**404 Not Found**
+
+> If the ID cannot be located, the server will provide a message and 404 not found error.
+
+```
+{
+    "message": "Story could not be located."
 }
 ```
