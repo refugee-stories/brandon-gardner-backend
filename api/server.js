@@ -3,10 +3,10 @@ const express = require("express");
 const helmet = require("helmet");
 const cors = require("cors");
 
-const restricted = require("./middleware/restricted");
-const loginRouter = require("./routes/login");
-const storyRouter = require("./routes/stories");
-const adminRouter = require("./routes/admin");
+const restricted = require("../middleware/restricted");
+const loginRouter = require("../routes/login");
+const storyRouter = require("../routes/stories");
+const adminRouter = require("../routes/admin");
 
 const server = express();
 
