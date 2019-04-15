@@ -285,7 +285,7 @@ _POST Request /api/admin/stories/reject/:id_
 
 ## Delete A Story <a name="delete-story"></a>
 
-/Deletes an already approved story. Does not operate on pending stories. Please use reject/
+_Deletes an already approved story. Does not operate on pending stories. Please use reject_
 
 _POST Request /api/admin/stories/delete/:id_
 
