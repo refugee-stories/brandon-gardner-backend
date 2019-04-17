@@ -20,32 +20,38 @@ router
 router
   .route("/stories/approve/:id")
   //POST FOR APPROVE
-  .post(async ({ body: { title, story, highlight }, params: { id } }, res) => {
-    if (title && story && highlight) {
-      try {
-        const newId = await actions.approveStory(id, {
-          title,
-          story,
-          highlight
-        });
-        if (newId) {
-          res.status(201).json({ newStoryID: newId });
-        } else {
-          res.status(404).json({ message: "The story could not be found." });
+  .post(
+    async (
+      { body: { title, story, highlight, source }, params: { id } },
+      res
+    ) => {
+      if (title && story && highlight) {
+        try {
+          const newId = await actions.approveStory(id, {
+            title,
+            story,
+            highlight,
+            source
+          });
+          if (newId) {
+            res.status(201).json({ newStoryID: newId });
+          } else {
+            res.status(404).json({ message: "The story could not be found." });
+          }
+        } catch (error) {
+          console.log(error);
+          res.status(500).json({
+            message: "Something went wrong approving the story.",
+            error
+          });
         }
-      } catch (error) {
-        console.log(error);
-        res.status(500).json({
-          message: "Something went wrong approving the story.",
-          error
+      } else {
+        res.status(400).json({
+          message: "Please provide a title, story, and highlight to add."
         });
       }
-    } else {
-      res.status(400).json({
-        message: "Please provide a title, story, and highlight to add."
-      });
     }
-  });
+  );
 
 router
   .route("/stories/reject/:id")
