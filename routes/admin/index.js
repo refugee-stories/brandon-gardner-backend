@@ -5,15 +5,12 @@ const actions = require("./storyModel");
 router
   .route("/stories")
   //GET FOR /STORIES
-  .get(async (req, res) => {
+  .get(async (req, res, next) => {
     try {
       const stories = await actions.getPendingStories();
       res.status(200).json(stories);
     } catch (error) {
-      res.status({
-        message: "Something went wrong fetching pending stories.",
-        error
-      });
+      next(error)
     }
   });
 
@@ -23,7 +20,7 @@ router
   .post(
     async (
       { body: { title, story, highlight, source }, params: { id } },
-      res
+      res, next
     ) => {
       if (title && story && highlight) {
         try {
@@ -40,10 +37,7 @@ router
           }
         } catch (error) {
           console.log(error);
-          res.status(500).json({
-            message: "Something went wrong approving the story.",
-            error
-          });
+          next(error)
         }
       } else {
         res.status(400).json({
@@ -56,7 +50,7 @@ router
 router
   .route("/stories/reject/:id")
   //DELETE FOR REJECT
-  .delete(async ({ params: { id } }, res) => {
+  .delete(async ({ params: { id } }, res, next) => {
     try {
       const count = await actions.rejectStory(id);
       if (count) {
@@ -65,17 +59,14 @@ router
         res.status(404).json({ message: "Story could not be located." });
       }
     } catch (error) {
-      res.status(500).json({
-        message: "Something went wrong rejecting the story.",
-        error
-      });
+      next(error)
     }
   });
 
 router
   .route("/stories/delete/:id")
   //DELETE FOR REMOVAL
-  .delete(async ({ params: { id } }, res) => {
+  .delete(async ({ params: { id } }, res, next) => {
     try {
       const count = await actions.deleteStory(id);
       if (count) {
@@ -84,10 +75,7 @@ router
         res.status(404).json({ message: "Story could not be located." });
       }
     } catch (error) {
-      res.status(500).json({
-        message: "Something went wrong deleting the story.",
-        error
-      });
+      next(error)
     }
   });
 

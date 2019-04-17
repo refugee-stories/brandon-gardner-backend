@@ -16,7 +16,7 @@ function approveStory(id, story) {
       if (!exists) {
         resolve(false);
       }
-      const [newId] = await db("stories").insert(story);
+      const [newId] = await db("stories").insert(story).returning("id");
       const count = await db("pending_stories")
         .where({ id })
         .del();

@@ -4,7 +4,7 @@ const bcrypt = require("bcryptjs");
 const actions = require("./loginModel");
 const generateToken = require("../../auth/token-handlers").generateToken;
 
-router.route("/").post(async (req, res) => {
+router.route("/").post(async (req, res, next) => {
   let { email, password } = req.body;
   if (email && password) {
     try {
@@ -17,7 +17,7 @@ router.route("/").post(async (req, res) => {
         res.status(401).json({ message: "Invalid credentials." });
       }
     } catch (err) {
-      res.status(500).json({ message: "Something went wrong logging in." });
+      next(err)
     }
   } else {
     res.status(400).json({ message: "Please provide an email and password." });

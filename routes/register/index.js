@@ -2,7 +2,7 @@ const router = require("express").Router();
 
 const actions = require("./register");
 
-router.route("/").post(async (req, res) => {
+router.route("/").post(async (req, res, next) => {
   const user = req.body;
   if (user && user.email && user.password) {
     try {
@@ -13,9 +13,7 @@ router.route("/").post(async (req, res) => {
         res.status(400).json({ message: "The user already exists." });
       }
     } catch (error) {
-      res
-        .status(500)
-        .json({ message: "Something went wrong adding the new user." });
+      next(error)
     }
   } else {
     res.status(400).json({

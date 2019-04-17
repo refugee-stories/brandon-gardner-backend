@@ -10,7 +10,7 @@ async function addUser(user) {
   user.password = bcrypt.hashSync(user.password, 8);
 
   return new Promise(async (resolve, reject) => {
-    const count = await db("accounts").insert(user);
+    const count = await db("accounts").insert(user).returning("id");
     if (count) {
       const { id: account_id } = await db("accounts")
         .select("id")

@@ -7,7 +7,8 @@ module.exports = {
 };
 
 function addStory(story) {
-  return db("pending_stories").insert(story);
+
+  return db("pending_stories").insert(story).returning("id");
 }
 
 function getAllStories() {
