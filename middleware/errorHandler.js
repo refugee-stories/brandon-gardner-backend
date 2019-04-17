@@ -1,4 +1,3 @@
-const responseStatus = require("../config/responseStatusConfig");
 
 function errorHandler(error, req, res, next) {
   switch (error) {
@@ -19,16 +18,14 @@ function errorHandler(error, req, res, next) {
         message: "Incorrect credentials. Please try again."
       });
       break;
-
     case 403:
       res.status(403).json({
         statusCode: error,
         message: "You are not authorized to view this content."
       });
       break;
-
     default:
-      //console.log(error);
+      console.log(error);
       res.json({ message: error.message });
   }
   next();
