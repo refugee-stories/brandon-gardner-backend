@@ -8,6 +8,7 @@ const loginRouter = require("../routes/login");
 const storyRouter = require("../routes/stories");
 const adminRouter = require("../routes/admin");
 const registerRouter = require("../routes/register");
+const errorHandler = require("../middleware/errorHandler")
 
 const server = express();
 
@@ -20,7 +21,7 @@ server.use("/api/auth/login", loginRouter);
 server.use("/api/stories", storyRouter);
 server.use("/api/admin", restricted("admin"), adminRouter);
 server.use("/api/auth/register", restricted("admin"), registerRouter);
-
+server.use(errorHandler);
 server.get("/", (req, res) => {
   res.sendFile(path.join(__dirname + "/index.html"));
 });
