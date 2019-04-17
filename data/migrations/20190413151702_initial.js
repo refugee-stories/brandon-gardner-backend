@@ -22,12 +22,14 @@ exports.up = function(knex, Promise) {
       t.increments();
       t.string("title");
       t.text("story");
+      t.string("source");
     })
     .createTable("stories", t => {
       t.increments();
       t.string("title");
       t.string("highlight");
       t.text("story");
+      t.string("source");
     });
 };
 

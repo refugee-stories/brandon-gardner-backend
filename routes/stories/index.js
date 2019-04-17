@@ -16,10 +16,10 @@ router
     }
   })
   //POST TO /
-  .post(async ({ body: { story, title } }, res) => {
+  .post(async ({ body: { story, title, source } }, res) => {
     if (story && title) {
       try {
-        const [id] = await actions.addStory({ story, title });
+        const [id] = await actions.addStory({ story, title, source });
         res.status(201).json({ id });
       } catch (error) {
         res.status(500).json({
