@@ -19,15 +19,14 @@ router
   //POST FOR APPROVE
   .post(
     async (
-      { body: { title, story, highlight, source }, params: { id } },
+      { body: { title, story, source }, params: { id } },
       res, next
     ) => {
-      if (title && story && highlight) {
+      if (title && story) {
         try {
           const newId = await actions.approveStory(id, {
             title,
             story,
-            highlight,
             source
           });
           if (newId) {
@@ -41,7 +40,7 @@ router
         }
       } else {
         res.status(400).json({
-          message: "Please provide a title, story, and highlight to add."
+          message: "Please provide a title, story to add."
         });
       }
     }
