@@ -1,6 +1,6 @@
 exports.seed = function (knex, Promise) {
   // Deletes ALL existing entries
-  return knex("stories").insert([
+  return knex("pending_stories").insert([
     {
       source:
         "https://medium.com/globalgoodness/12-powerful-refugee-stories-from-around-the-world-5c0a54d2e2ed",
